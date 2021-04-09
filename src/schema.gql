@@ -1,0 +1,59 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthModel {
+  id: String
+  name: String
+  email: String!
+  phone: String
+  status: Int
+  role: Int
+  password: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  access_token: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type CommentModel {
+  user: AuthModel!
+  content: String!
+  room: String!
+}
+
+type Query {
+  comments: [CommentModel!]!
+  users: [AuthModel!]!
+}
+
+type Mutation {
+  addComment(commentData: CommentInput!): CommentModel!
+  login(loginData: LoginInput!): AuthModel!
+  resgister(registerData: RegisterInput!): AuthModel!
+}
+
+input CommentInput {
+  content: String!
+  room: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input RegisterInput {
+  email: String!
+  name: String!
+  password: String!
+  phone: String
+}
+
+type Subscription {
+  commentAdded: CommentModel!
+}
