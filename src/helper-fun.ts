@@ -10,3 +10,22 @@ export const helper = {
     }
 
 }
+export function inArray(arrayInput, Item) {
+    for (var i = 0; i < arrayInput.length; i++) {
+        if (JSON.stringify(Item) == JSON.stringify(arrayInput[i]))
+            return true
+    }
+    return false
+}
+
+export function pushIfNotExist(arrayInput, Item) {
+    if (!inArray(arrayInput, Item)) {
+        arrayInput.push(Item)
+    }
+    return arrayInput;
+}
+export function popIfExit(arrayInput, Item) {
+    return arrayInput.filter(function (value) {
+        return value != JSON.stringify(Item);
+    })
+}

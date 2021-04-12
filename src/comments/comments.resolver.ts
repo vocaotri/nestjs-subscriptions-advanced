@@ -5,6 +5,7 @@ import { CommentInput } from './inputs/comment.input';
 import { CommentModel } from './models/comment.model';
 import { PubSub } from 'apollo-server-express';
 import * as fs from 'fs'
+import * as helpFun from '../helper-fun';
 const pubSub = new PubSub();
 @Resolver()
 export class CommentsResolver {
@@ -28,16 +29,19 @@ export class CommentsResolver {
     async commentAdded(@Context() context) {
         var auth = await this.jwtService.checkUserLogger(context, null);
         const data = fs.readFileSync('src/listSub.txt', 'utf8');
-        var arrayData = data.split('\n');
-
+        var arrayData = data.split('\n').filter(function (el) {
+            return el !== ""
+        });
         arrayData = arrayData.map(value => {
             return JSON.parse(value)
         })
-
-        console.log(arrayData);
-        // fs.writeFile('src/listSub.txt', JSON.stringify(auth), function (err) {
-        //     if (err) return console.log(err);
-        // });
+        var arrResult = helpFun.pushIfNotExist(arrayData, auth)
+        arrResult = arrResult.map(value => {
+            return JSON.stringify(value)
+        })
+        fs.writeFile('src/listSub.txt', arrResult.join("\n"), 'utf8', function (err) {
+            if (err) return console.log(err);
+        });
         return pubSub.asyncIterator('commentAdded');
     }
 }

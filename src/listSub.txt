@@ -1,3 +1,0 @@
-{"_id":"606fcd7c895b3527843966ba","email":"vocaotri@gmail.com","name":"trivo","password":"$2b$11$ZLHb5Sa3/P7v8jFqdiLT/uHAON3ddLMQyza0O4wM3HIDDJcE30AsC","phone":"0563324199","createdAt":"2021-04-09T03:43:56.407Z","updatedAt":"2021-04-09T03:43:56.407Z","__v":0}
-{"_id":"606fcd7c895b3527843966ba","email":"vocaotri@gmail.com","name":"trivo","password":"$2b$11$ZLHb5Sa3/P7v8jFqdiLT/uHAON3ddLMQyza0O4wM3HIDDJcE30AsC","phone":"0563324199","createdAt":"2021-04-09T03:43:56.407Z","updatedAt":"2021-04-09T03:43:56.407Z","__v":0}
-{"_id":"606fcd7c895b3527843966ba","email":"vocaotri@gmail.com","name":"trivo","password":"$2b$11$ZLHb5Sa3/P7v8jFqdiLT/uHAON3ddLMQyza0O4wM3HIDDJcE30AsC","phone":"0563324199","createdAt":"2021-04-09T03:43:56.407Z","updatedAt":"2021-04-09T03:43:56.407Z","__v":0}

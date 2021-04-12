@@ -10,6 +10,9 @@ import { join } from 'path';
 import { helper } from './helper-fun';
 import { CommentsModule } from './comments/comments.module';
 import { AuthModule } from './auth/auth.module';
+import { JWTService } from './auth/jwt/JWTToken';
+import * as fs from 'fs'
+import * as helpFun from './helper-fun';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -18,8 +21,16 @@ import { AuthModule } from './auth/auth.module';
     GraphQLModule.forRoot({
       context: ({ req, connection }) => connection ? { req: { headers: connection.context } } : { req },
       subscriptions: {
-        onDisconnect: (webSocket, context) => {
-          console.log('Disconnected!', context.initPromise)
+        onDisconnect: async (webSocket, context) => {
+          const auth = await JWTService.prototype.checkUserLogger(context, null)
+          const data = fs.readFileSync('src/listSub.txt', 'utf8');
+          var arrayData = data.split('\n').filter(function (el) {
+            return el !== ""
+          });
+          var arrayResult = helpFun.popIfExit(arrayData, auth)
+          fs.writeFile('src/listSub.txt', arrayResult.join("\n"), 'utf8', function (err) {
+            if (err) return console.log(err);
+          });
         },
       },
       installSubscriptionHandlers: true,

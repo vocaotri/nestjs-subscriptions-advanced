@@ -9,3 +9,6 @@ export const AuthSchema = new mongoose.Schema({
     role: { type: Number, required: false },
 }, { timestamps: true })
 AuthSchema.plugin(mongoosePaginate);
+AuthSchema.statics.findUserId = function (id) {
+    return this.findById(id).exec()
+}
