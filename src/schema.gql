@@ -26,6 +26,16 @@ type CommentModel {
   room: String!
 }
 
+type SFUModel {
+  id: String
+  sdp: String!
+  payload: String!
+  room_id: String!
+  user: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   comments: [CommentModel!]!
   users: [AuthModel!]!
@@ -35,6 +45,7 @@ type Mutation {
   addComment(commentData: CommentInput!): CommentModel!
   login(loginData: LoginInput!): AuthModel!
   resgister(registerData: RegisterInput!): AuthModel!
+  addStreamBroadcast(sfuData: SFUInput!): SFUModel!
 }
 
 input CommentInput {
@@ -52,6 +63,11 @@ input RegisterInput {
   name: String!
   password: String!
   phone: String
+}
+
+input SFUInput {
+  sdp: String!
+  room_id: String!
 }
 
 type Subscription {

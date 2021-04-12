@@ -11,6 +11,7 @@ import { helper } from './helper-fun';
 import { CommentsModule } from './comments/comments.module';
 import { AuthModule } from './auth/auth.module';
 import { JWTService } from './auth/jwt/JWTToken';
+import { SfuModule } from './sfu/sfu.module';
 import * as fs from 'fs'
 import * as helpFun from './helper-fun';
 @Module({
@@ -48,7 +49,8 @@ import * as helpFun from './helper-fun';
       useCreateIndex: true
     }),
     CommentsModule,
-    AuthModule],
+    AuthModule,
+    SfuModule],
   controllers: [AppController],
   providers: [AppService],
 })
