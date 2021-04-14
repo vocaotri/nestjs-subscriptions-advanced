@@ -46,6 +46,7 @@ type Mutation {
   login(loginData: LoginInput!): AuthModel!
   resgister(registerData: RegisterInput!): AuthModel!
   addStreamBroadcast(sfuData: SFUInput!): SFUModel!
+  viewStream(sfuData: SFUInput!): SFUModel!
 }
 
 input CommentInput {
@@ -71,5 +72,5 @@ input SFUInput {
 }
 
 type Subscription {
-  commentAdded: CommentModel!
+  commentAdded(room_id: String!): CommentModel!
 }

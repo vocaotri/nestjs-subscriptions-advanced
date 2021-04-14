@@ -1,0 +1,2 @@
+{"_id":"606fcd7c895b3527843966ba","email":"vocaotri@gmail.com","name":"trivo","password":"$2b$11$ZLHb5Sa3/P7v8jFqdiLT/uHAON3ddLMQyza0O4wM3HIDDJcE30AsC","phone":"0563324199","createdAt":"2021-04-09T03:43:56.407Z","updatedAt":"2021-04-09T03:43:56.407Z","__v":0}
+{"_id":"6073af6d5f26b34a98e19290","email":"trivo@gmail.com","name":"tri02","password":"$2b$11$99QUmHK8cn/1XH0jKRrjCexIonP7JVzxDNOx5dJnRj2sb7ysPADyC","phone":"0556324159","createdAt":"2021-04-12T02:24:45.655Z","updatedAt":"2021-04-12T02:24:45.655Z","__v":0}
