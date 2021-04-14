@@ -20,4 +20,9 @@ export class SfuService {
         }
         return room;
     }
+    async getRoom(roomID): Promise<SFUInterFace> {
+        return this.sfuModel.findOne({
+            room_id: roomID
+        })
+    }
 }

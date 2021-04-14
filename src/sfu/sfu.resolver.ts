@@ -12,7 +12,6 @@ export class SfuResolver {
         const auth = await this.jwtService.checkUserLogger(context, null);
         var roomID = parseInt(sfuData.room_id);
         var _this = this;
-        var sfu;
         var sfuInfo;
         const peer = new webrtc.RTCPeerConnection({
             iceServers: [
@@ -31,7 +30,30 @@ export class SfuResolver {
         const payload = {
             sdp: peer.localDescription
         }
-        sfu = { ...sfuInfo, payload: payload }
-        return sfu;
+        return { ...sfuInfo, payload: payload }
+    }
+    @Mutation(() => SFUModel)
+    async viewStream(@Context() context, @Args('sfuData') sfuData: SFUInput): Promise<SFUModel> {
+        await this.jwtService.checkUserLogger(context, null);
+        const peer = new webrtc.RTCPeerConnection({
+            iceServers: [
+                {
+                    urls: "stun:stun.stunprotocol.org"
+                }
+            ]
+        });
+
+        var roomID = parseInt(sfuData.room_id);
+        const desc = new webrtc.RTCSessionDescription(sfuData.sdp);
+        await peer.setRemoteDescription(desc);
+        var senderStreamRoom;
+        senderStreamRoom = await this.sfuService.getRoom(roomID);
+        senderStreamRoom.sdp.getTracks().forEach(track => peer.addTrack(track, senderStreamRoom.sdp));
+        const answer = await peer.createAnswer();
+        await peer.setLocalDescription(answer);
+        const payload = {
+            sdp: peer.localDescription
+        }
+        return { ...senderStreamRoom, payload: payload }
     }
 }
