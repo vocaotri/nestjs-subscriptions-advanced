@@ -23,10 +23,10 @@ export class CommentsResolver {
     }
     @Subscription(returns => CommentModel, {
         filter(payload, variables) {
-            return payload.commentAdded.room === '99553';
+            return payload.commentAdded.room === variables.room_id;
         }
     })
-    async commentAdded(@Context() context) {
+    async commentAdded(@Context() context, @Args('room_id') room_id: string) {
         var auth = await this.jwtService.checkUserLogger(context, null);
         const data = fs.readFileSync('src/listSub.txt', 'utf8');
         var arrayData = data.split('\n').filter(function (el) {
